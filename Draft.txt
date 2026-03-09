@@ -1,0 +1,18 @@
+            start
+             |
+            router
+              |
+    flight   hotel    itineray
+    agent    agent    agent
+              |
+            end
+
+
+learnings:
+1. Created pinecone retriever tool and asked it about SF weatther and it blabbered about Japan.
+I realized that it is becasuse retriever embeds the query and runs similarity search against Japan blog chunks,
+and returns top-k hits even when they are weakly related and the model then answers from that context.
+Options: Use similarity_score_threshold so only high score docs are returned
+or improve the  model to select from different tools like Tavily tool instead of retriever.
+
+2. Instead of creating itinary agent with two tools Tavily and RAG, we can just use Rag for travel planning. If weather is needed, we can create another agent just for weather
